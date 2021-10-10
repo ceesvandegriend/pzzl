@@ -1,0 +1,5 @@
+---
+setup_packages:
+  - git
+  - tmux
+  - vim-nox

@@ -1,0 +1,8 @@
+---
+- name: 'Playing with Ansible'
+  hosts: localhost
+  become: yes
+
+  roles:
+    - setup
+

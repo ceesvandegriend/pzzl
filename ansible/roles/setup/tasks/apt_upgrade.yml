@@ -1,0 +1,13 @@
+---
+- name: Apt full-upgrade
+  apt:
+    update_cache: yes
+    upgrade: full
+
+- name: Apt install packages
+  apt:
+    pkg:
+      - vim-nox
+      - tmux
+      - git
+
