@@ -1,0 +1,40 @@
+---
+- include_vars: secrets.yml
+
+- name: Common user {{ pzzl_user.login }}
+  user:
+    name: "{{ pzzl_user.login }}"
+    comment: "{{ pzzl_user.name }}"
+    shell: /bin/bash
+
+- name: Common user authorized key
+  authorized_key:
+    user: "{{ pzzl_user.login }}"
+    key: "{{ pzzl_user.ssh_key_pub }}"
+    state: present
+    exclusive: True
+
+- name: Common user {{ pzzl_user.login }}/.ssh/
+  file:
+    path: /home/{{ pzzl_user.login }}/.ssh/
+    state: directory
+    mode: "0700"
+    owner: "{{ pzzl_user.login }}"
+    group: "{{ pzzl_user.login }}"
+
+- name: Common user private key
+  copy:
+    dest: /home/{{ pzzl_user.login }}/.ssh/id_ed25519
+    content: "{{ pzzl_user.ssh_key_prv }}"
+    mode: "0400"
+    owner: "{{ pzzl_user.login }}"
+    group: "{{ pzzl_user.login }}"
+
+
+- name: Common user {{ pzzl_user.login }}/.profile.d/
+  file:
+    path: /home/{{ pzzl_user.login }}/.profile.d/
+    state: directory
+    mode: "0700"
+    owner: "{{ pzzl_user.login }}"
+    group: "{{ pzzl_user.login }}"

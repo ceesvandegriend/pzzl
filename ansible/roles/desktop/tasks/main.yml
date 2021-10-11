@@ -1,0 +1,10 @@
+---
+- name: Desktop main
+  import_tasks: apt_package.yml
+  when: ansible_distribution == "Debian"
+  tags:
+  - never
+  - desktop
+
+  # include_role:
+  #   name: common

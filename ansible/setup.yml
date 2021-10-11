@@ -1,8 +1,10 @@
 ---
 - name: 'Playing with Ansible'
   hosts: localhost
-  become: yes
+  become: True
 
   roles:
-    - setup
-
+  - common
+  - desktop
+  - server
+  

@@ -1,0 +1,7 @@
+---
+- name: Server main
+  import_tasks: apt_package.yml
+  when: ansible_distribution == "Debian"
+  tags:
+  - never
+  - server

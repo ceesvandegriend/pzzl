@@ -1,0 +1,6 @@
+---
+common_packages:
+- aptitude
+- git
+- tmux
+- vim-nox

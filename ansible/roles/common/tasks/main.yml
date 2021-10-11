@@ -1,0 +1,12 @@
+---
+- import_tasks: apt_upgrade.yml
+  when: ansible_distribution == "Debian"
+  tags:
+  - always
+
+- import_tasks: apt_package.yml
+  when: ansible_distribution == "Debian"
+  tags:
+  - always
+ 
+- import_tasks: user.yml

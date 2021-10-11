@@ -1,5 +1,0 @@
----
-# At the moment only Debian 11 (Bullseye)
-- import_tasks: apt_upgrade.yml
-- import_tasks: apt_package.yml
-
