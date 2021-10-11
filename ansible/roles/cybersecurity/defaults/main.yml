@@ -1,0 +1,7 @@
+---
+cybersecurity_packages:
+- hydra
+- john
+- john-data
+- nmap
+- openvpn

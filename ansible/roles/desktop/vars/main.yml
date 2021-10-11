@@ -1,0 +1,3 @@
+---
+# pzzl_user.ssh_key_prv: << vars/secrets.yml >>
+# pzzl_linode_token: << vars/secrests.yml >>

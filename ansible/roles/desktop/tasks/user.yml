@@ -1,0 +1,12 @@
+---
+- include_vars: secrets.yml
+
+- name: Common user .profile.d/ templates
+  template:
+    src: "{{ item }}"
+    dest: "/home/{{ pzzl_user.login }}/.profile.d/{{ item | basename | splitext | first }}"
+    owner: "{{ pzzl_user.login }}"
+    group: "{{ pzzl_user.login }}"
+    mode: "0600"
+  with_fileglob:
+  - ../templates/user/profile.d/*.sh.j2

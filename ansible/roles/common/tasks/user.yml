@@ -38,3 +38,31 @@
     mode: "0700"
     owner: "{{ pzzl_user.login }}"
     group: "{{ pzzl_user.login }}"
+
+- name: Common user .profile.d/ templates
+  template:
+    src: "{{ item }}"
+    dest: "/home/{{ pzzl_user.login }}/.profile.d/{{ item | basename | splitext | first }}"
+    owner: "{{ pzzl_user.login }}"
+    group: "{{ pzzl_user.login }}"
+    mode: "0600"
+  with_fileglob:
+  - ../templates/user/profile.d/*.sh.j2
+  # with_items:
+  # - user/profile.d/50-editor.sh.j2
+
+# - name: Common user .bash_profile
+#   template:
+#     src: user/bash_profile.j2
+#     dest: "/home/{{ pzzl_user.login }}/.bash_profile"
+#     owner: "{{ pzzl_user.login }}"
+#     group: "{{ pzzl_user.login }}"
+#     mode: "0644"
+
+- name: Common user .bashrc
+  template:
+    src: user/bashrc.j2
+    dest: "/home/{{ pzzl_user.login }}/.bashrc"
+    owner: "{{ pzzl_user.login }}"
+    group: "{{ pzzl_user.login }}"
+    mode: "0644"

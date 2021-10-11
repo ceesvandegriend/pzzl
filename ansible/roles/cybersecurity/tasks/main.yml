@@ -1,19 +1,12 @@
 ---
-- name: Desktop main
+- name: Cybersecurity main
   import_tasks: apt_package.yml
   when: ansible_distribution == "Debian"
   tags:
   - never
-  - desktop
+  - cybersecurity
 
 - import_tasks: user.yml
   tags:
   - never
-  - desktop
-
-- name: Install linode-cli
-  pip:
-    name: linode-cli
-  tags:
-  - never
-  - desktop
+  - cybersecurity

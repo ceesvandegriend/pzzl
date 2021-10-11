@@ -1,0 +1,9 @@
+{{ ansible_managed | comment }}
+
+if [ -d ~/.profile.d ] ; then
+    for SH in [ ~/.profile.d/*.sh ] ; do
+        if [ -f ${SH} ] ; then
+             source ${SH}
+        fi
+    done
+fi
