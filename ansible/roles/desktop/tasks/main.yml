@@ -10,10 +10,3 @@
   tags:
   - never
   - desktop
-
-- name: Install linode-cli
-  pip:
-    name: linode-cli
-  tags:
-  - never
-  - desktop

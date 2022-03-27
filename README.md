@@ -7,8 +7,9 @@ $ cd .../ansible
 ```
 
 ```shell
-$ ansible-playbook --ask-vault-password setup.yml -t desktop
-Vault password: 
+$ ansible-playbook --ask-become-pass --ask-vault-password setup.yml -t desktop
+BECOME password: ...
+Vault password: ...
 
 PLAY [Playing with Ansible] ********************************************************************************************************
 
