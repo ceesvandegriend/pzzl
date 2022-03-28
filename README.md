@@ -3,7 +3,7 @@
 Setup the localhost with Ansible.
 
 ```shell
-$ cd .../ansible
+$ cd .../src/nsible
 ```
 
 ```shell
