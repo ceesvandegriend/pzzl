@@ -10,3 +10,8 @@
   tags:
   - never
   - desktop
+
+- import_tasks: flatpak.yml
+  tags:
+  - never
+  - desktop

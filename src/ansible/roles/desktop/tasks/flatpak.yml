@@ -1,0 +1,30 @@
+---
+# Ticket 0002
+- name: Install flatpak
+  apt:
+    name: flatpak
+    state: latest
+
+- name: Add flathub repository
+  flatpak_remote:
+    name: flathub
+    state: present
+    flatpakrepo_url: https://dl.flathub.org/repo/flathub.flatpakrepo
+  
+- name: Install flatpak vscode
+  flatpak:
+    name: com.visualstudio.code
+    state: present
+    remote: flathub
+  
+- name: Install flatpak bitwarden
+  flatpak:
+    name: com.bitwarden.desktop
+    state: present
+    remote: flathub
+
+- name: Install flatpak slack
+  flatpak:
+    name: com.slack.Slack
+    state: present
+    remote: flathub

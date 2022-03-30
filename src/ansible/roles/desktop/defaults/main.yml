@@ -1,3 +1,7 @@
 ---
 desktop_packages:
 - hugo
+
+# Ticket 0001
+- mesa-utils
+- libgl1-mesa-glx
