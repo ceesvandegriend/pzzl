@@ -1,0 +1,17 @@
+---
+# Ticket 0004: Install VSCode from repo
+- name: Install VSCode GPG key
+  apt_key:
+    url: "https://packages.microsoft.com/keys/microsoft.asc"
+    state: present
+
+- name: Add VSCode Repo
+  apt_repository:
+    repo: "deb [arch=amd64,arm64,armhf] http://packages.microsoft.com/repos/code stable main"
+    filename: "vscode.list"
+    update_cache: yes
+
+- name: Install VSCode
+  apt:
+    name: "code"
+    state: latest

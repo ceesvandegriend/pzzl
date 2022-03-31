@@ -15,3 +15,10 @@
   tags:
   - never
   - desktop
+
+- name: Visual Studio Code
+  import_tasks: vscode.yml
+  when: ansible_distribution == "Debian"
+  tags:
+  - never
+  - desktop
