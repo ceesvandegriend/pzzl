@@ -1,0 +1,8 @@
+---
+- name: Copy SSH private key
+  copy:
+    src: ssh/id_ed25519
+    dest: "/home/{{ pzzl_user.login }}/.ssh/id_ed25519"
+    owner: "{{ pzzl_user.login }}"
+    group: "{{ pzzl_user.login }}"
+    mode: "0600"
