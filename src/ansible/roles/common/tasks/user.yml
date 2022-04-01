@@ -51,13 +51,13 @@
   # with_items:
   # - user/profile.d/50-editor.sh.j2
 
-# - name: Common user .bash_profile
-#   template:
-#     src: user/bash_profile.j2
-#     dest: "/home/{{ pzzl_user.login }}/.bash_profile"
-#     owner: "{{ pzzl_user.login }}"
-#     group: "{{ pzzl_user.login }}"
-#     mode: "0644"
+- name: Common user .bash_profile
+  template:
+    src: user/bash_profile.j2
+    dest: "/home/{{ pzzl_user.login }}/.bash_profile"
+    owner: "{{ pzzl_user.login }}"
+    group: "{{ pzzl_user.login }}"
+    mode: "0644"
 
 - name: Common user .bashrc
   template:

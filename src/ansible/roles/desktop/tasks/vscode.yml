@@ -8,7 +8,7 @@
 - name: Add VSCode Repo
   apt_repository:
     repo: "deb [arch=amd64,arm64,armhf] http://packages.microsoft.com/repos/code stable main"
-    filename: "vscode.list"
+    filename: "vscode"
     update_cache: yes
 
 - name: Install VSCode

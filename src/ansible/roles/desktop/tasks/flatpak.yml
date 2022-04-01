@@ -2,7 +2,9 @@
 # Ticket 0002
 - name: Install flatpak
   apt:
-    name: flatpak
+    name: 
+    - flatpak
+    - gnome-software-plugin-flatpak
     state: latest
 
 - name: Add flathub repository

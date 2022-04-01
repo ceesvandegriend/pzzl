@@ -5,3 +5,19 @@ cybersecurity_packages:
 - john-data
 - nmap
 - openvpn
+- whois
+
+- smbclient
+- smbmap
+- polenum
+- ldap-utils
+- telnet
+- tcpdump
+- rlwrap
+
+- nfs-client
+
+- default-mysql-client
+
+- openjdk-11-jre
+

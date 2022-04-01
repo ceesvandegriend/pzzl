@@ -1,0 +1,6 @@
+---
+
+- name: Install enum4linux
+  git:
+    repo: https://github.com/CiscoCXSecurity/enum4linux.git
+    dest: /home/{{ pzzl_user.login }}/opt/enum4linux/
