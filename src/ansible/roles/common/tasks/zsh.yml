@@ -1,0 +1,40 @@
+---
+- name: Create .zsh.d
+  file:
+    path: /home/{{ pzzl_user.login }}/.zsh.d/
+    state: directory
+    mode: "0700"
+    owner: "{{ pzzl_user.login }}"
+    group: "{{ pzzl_user.login }}"
+
+- name: Configure .zshenv
+  template:
+    src: zsh/zshenv.j2
+    dest: "/home/{{ pzzl_user.login }}/.zshenv"
+    owner: "{{ pzzl_user.login }}"
+    group: "{{ pzzl_user.login }}"
+    mode: "0600"
+
+- name: Common user .zsh.d/ templates
+  template:
+    src: zsh/{{ item }}
+    dest: "/home/{{ pzzl_user.login }}/.zsh.d/.{{ item | basename | splitext | first }}"
+    owner: "{{ pzzl_user.login }}"
+    group: "{{ pzzl_user.login }}"
+    mode: "0600"
+  with_items:
+  - zprofile.j2
+  - zshrc.j2
+  - zlogin.j2
+  - zlogout.j2
+
+- name: Common user .zsh.d/ templates
+  template:
+    src: "{{ item }}"
+    dest: "/home/{{ pzzl_user.login }}/.zsh.d/{{ item | basename | splitext | first }}"
+    owner: "{{ pzzl_user.login }}"
+    group: "{{ pzzl_user.login }}"
+    mode: "0600"
+  with_fileglob:
+  - "../templates/zsh/[0-9][0-9]-*.j2"
+  

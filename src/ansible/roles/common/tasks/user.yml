@@ -5,64 +5,10 @@
   user:
     name: "{{ pzzl_user.login }}"
     comment: "{{ pzzl_user.name }}"
-    shell: /bin/bash
+    shell: /usr/bin/zsh
 
 - name: Common user authorized key
   authorized_key:
     user: "{{ pzzl_user.login }}"
     key: "{{ pzzl_user.ssh_key_pub }}"
     state: present
-    exclusive: True
-
-- name: Common user {{ pzzl_user.login }}/.ssh/
-  file:
-    path: /home/{{ pzzl_user.login }}/.ssh/
-    state: directory
-    mode: "0700"
-    owner: "{{ pzzl_user.login }}"
-    group: "{{ pzzl_user.login }}"
-
-- name: Common user private key
-  copy:
-    dest: /home/{{ pzzl_user.login }}/.ssh/id_ed25519
-    content: "{{ pzzl_user.ssh_key_prv }}"
-    mode: "0400"
-    owner: "{{ pzzl_user.login }}"
-    group: "{{ pzzl_user.login }}"
-
-
-- name: Common user {{ pzzl_user.login }}/.profile.d/
-  file:
-    path: /home/{{ pzzl_user.login }}/.profile.d/
-    state: directory
-    mode: "0700"
-    owner: "{{ pzzl_user.login }}"
-    group: "{{ pzzl_user.login }}"
-
-- name: Common user .profile.d/ templates
-  template:
-    src: "{{ item }}"
-    dest: "/home/{{ pzzl_user.login }}/.profile.d/{{ item | basename | splitext | first }}"
-    owner: "{{ pzzl_user.login }}"
-    group: "{{ pzzl_user.login }}"
-    mode: "0600"
-  with_fileglob:
-  - ../templates/user/profile.d/*.sh.j2
-  # with_items:
-  # - user/profile.d/50-editor.sh.j2
-
-- name: Common user .bash_profile
-  template:
-    src: user/bash_profile.j2
-    dest: "/home/{{ pzzl_user.login }}/.bash_profile"
-    owner: "{{ pzzl_user.login }}"
-    group: "{{ pzzl_user.login }}"
-    mode: "0644"
-
-- name: Common user .bashrc
-  template:
-    src: user/bashrc.j2
-    dest: "/home/{{ pzzl_user.login }}/.bashrc"
-    owner: "{{ pzzl_user.login }}"
-    group: "{{ pzzl_user.login }}"
-    mode: "0644"

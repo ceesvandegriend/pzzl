@@ -1,0 +1,10 @@
+{{ ansible_managed | comment }}
+
+# Only unique paths
+typeset -U path
+
+if [ -d ${HOME}/bin ] ; then
+	path+=${HOME}/bin
+fi	
+
+export path

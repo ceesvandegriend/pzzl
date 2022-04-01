@@ -1,11 +1,10 @@
 ---
-- name: 'Playing with Ansible'
+- name: 'Setup a desktop with Ansible'
   hosts: localhost
   become: true
+  tags:
+  - desktop
 
   roles:
   - common
   - desktop
-  - server
-  - cybersecurity
-

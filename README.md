@@ -2,30 +2,19 @@
 
 Setup the localhost with Ansible.
 
+Store ansible-vault password in `~/.pzzl-ansible-vault`.
+
+N.B. Password is in BitWarden as entry `Pzzl Ansible Vault`.
+
+
 ```shell
-$ cd .../src/nsible
+$ cd .../src/ansible
 ```
 
 ```shell
-$ ansible-playbook --ask-become-pass --ask-vault-password setup.yml -t desktop
+$ ansible-playbook -K -t desktop setup.yml
 BECOME password: ...
-Vault password: ...
 
 PLAY [Playing with Ansible] ********************************************************************************************************
-
-TASK [Gathering Facts] *************************************************************************************************************
-ok: [localhost]
-
-TASK [common : Apt full-upgrade] ***************************************************************************************************
-ok: [localhost]
-
-TASK [common : Install packages] ***************************************************************************************************
-ok: [localhost]
-
-TASK [desktop : Install packages] **************************************************************************************************
-ok: [localhost]
-
-PLAY RECAP *************************************************************************************************************************
-localhost                  : ok=4    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
-
+...
 ```
