@@ -14,11 +14,22 @@
   register: gpg_public_key_exist
   ignore_errors: true
 
+- name: Copy GPG public key
+  copy:
+    src: gpg/public.asc
+    dest: /tmp/public.asc
+    owner: "{{ pzzl_user.login }}"
+    group: "{{ pzzl_user.login }}"
+    mode: "0600"
+  when: gpg_public_key_exist.rc != 0
+
 - name: Import GPG public key
   become: yes
   become_user: "{{ pzzl_user.login }}"
-  command: "echo {{ lookup('file', '../files/gpg/public.asc') }} | gpg2 --import" 
+  command: gpg2 --import /tmp/public.asc 
+  register: gpg_public_key_import
   when: gpg_public_key_exist.rc != 0
+  
 
 - name: Check GPG secret key
   become: yes
@@ -27,14 +38,48 @@
   register: gpg_secret_key_exist
   ignore_errors: true
 
+- name: Copy GPG secret key
+  copy:
+    src: gpg/secret.asc
+    dest: /tmp/secret.asc
+    owner: "{{ pzzl_user.login }}"
+    group: "{{ pzzl_user.login }}"
+    mode: "0600"
+  when: gpg_secret_key_exist.rc != 0
+
 - name: Import GPG secret key
   become: yes
   become_user: "{{ pzzl_user.login }}"
-  command: "echo {{ lookup('file', '../files/gpg/secret.asc') }} | gpg2 --import" 
+  command: gpg2 --import /tmp/secret.asc 
   when: gpg_secret_key_exist.rc != 0
 
-- name: Trust GPG key
+
+
+- name: Create GPG Trust
   become: yes
   become_user: "{{ pzzl_user.login }}"
-  command: "echo -e 'trust\n5\ny\nquit' | gpg2 --command-fd 0 --edit-key {{ pzzl_user.gpgsign }}"
+  shell: "gpg2 --export-ownertrust && echo {{ pzzl_user.gpgsign }}:6: > /tmp/trust.asc"
   when: gpg_public_key_exist.rc != 0 or gpg_secret_key_exist.rc != 0 
+
+- name: Import GPG Trust
+  become: yes
+  become_user: "{{ pzzl_user.login }}"
+  command: "gpg2 --import-ownertrust /tmp/trust.asc"
+  when: gpg_public_key_exist.rc != 0 or gpg_secret_key_exist.rc != 0 
+
+
+
+- name: Delete GPG public key
+  file:
+    path: /tmp/public.asc
+    state: absent
+
+- name: Delete GPG secret key
+  file:
+    path: /tmp/secret.asc
+    state: absent
+
+- name: Delete GPG trust
+  file:
+    path: /tmp/trust.asc
+    state: absent
