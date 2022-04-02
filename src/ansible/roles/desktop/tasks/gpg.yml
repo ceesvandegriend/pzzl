@@ -6,3 +6,35 @@
 # ssb   rsa3072 2022-04-01 [E] [expires: 2024-03-31]
 #
 # 0
+
+- name: Check GPG public key
+  become: yes
+  become_user: "{{ pzzl_user.login }}"
+  command: "gpg2 --list-public-keys {{ pzzl_user.gpgsign }}"
+  register: gpg_public_key_exist
+  ignore_errors: true
+
+- name: Import GPG public key
+  become: yes
+  become_user: "{{ pzzl_user.login }}"
+  command: "echo {{ lookup('file', '../files/gpg/public.asc') }} | gpg2 --import" 
+  when: gpg_public_key_exist.rc != 0
+
+- name: Check GPG secret key
+  become: yes
+  become_user: "{{ pzzl_user.login }}"
+  command: "gpg2 --list-secret-keys {{ pzzl_user.gpgsign }}"
+  register: gpg_secret_key_exist
+  ignore_errors: true
+
+- name: Import GPG secret key
+  become: yes
+  become_user: "{{ pzzl_user.login }}"
+  command: "echo {{ lookup('file', '../files/gpg/secret.asc') }} | gpg2 --import" 
+  when: gpg_secret_key_exist.rc != 0
+
+- name: Trust GPG key
+  become: yes
+  become_user: "{{ pzzl_user.login }}"
+  command: "echo -e 'trust\n5\ny\nquit' | gpg2 --command-fd 0 --edit-key {{ pzzl_user.gpgsign }}"
+  when: gpg_public_key_exist.rc != 0 or gpg_secret_key_exist.rc != 0 

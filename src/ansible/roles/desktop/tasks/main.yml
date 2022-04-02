@@ -9,6 +9,10 @@
   tags:
   - desktop
 
+- import_tasks: gpg.yml
+  tags:
+  - desktop
+
 - import_tasks: git.yml
   tags:
   - desktop
