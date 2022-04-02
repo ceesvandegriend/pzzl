@@ -1,2 +1,6 @@
 ---
-# pzzl_user.ssh_key_prv: << vars/secrets.yml >>
+pzzl_user:
+  login: cees
+  name: Cees van de Griend
+  email: c.vande.griend@gmail.com
+  gpgsign: 1ABE9EC34D137104D589BFECB15515C491917E67

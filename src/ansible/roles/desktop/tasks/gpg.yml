@@ -1,0 +1,8 @@
+---
+# gpg2 --list-secret-keys B15515C491917E67 ; echo $?
+# sec   rsa3072 2022-04-01 [SC] [expires: 2024-03-31]
+#       1ABE9EC34D137104D589BFECB15515C491917E67
+# uid           [ultimate] Cees van de Griend <c.vande.griend@gmail.com>
+# ssb   rsa3072 2022-04-01 [E] [expires: 2024-03-31]
+#
+# 0

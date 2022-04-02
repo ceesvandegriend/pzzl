@@ -11,3 +11,5 @@ common_packages:
 - python3-wheel
 
 - zsh
+
+- apt-transport-https

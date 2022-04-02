@@ -1,0 +1,15 @@
+{{ ansible_managed | comment }}
+
+[user]
+	name = {{ pzzl_user.name }}
+	email = {{ pzzl_user.email }}
+	signingkey = {{ pzzl_user.gpgsign }}
+[commit]
+	gpgsign = true
+[filter "lfs"]
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+[init]
+	defaultBranch = main

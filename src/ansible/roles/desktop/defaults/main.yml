@@ -5,3 +5,7 @@ desktop_packages:
 # Ticket 0001
 - mesa-utils
 - libgl1-mesa-glx
+
+- neofetch
+
+- gnupg2

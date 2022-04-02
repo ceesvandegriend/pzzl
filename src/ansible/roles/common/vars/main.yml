@@ -2,3 +2,4 @@
 pzzl_user:
   login: cees
   name: Cees van de Griend
+  ssh_key_pub: ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIE2vyUoA/rOO7kGN+7rnK1p/Vu5DWVVWALXsMWDQ+jkk cees@griend.local

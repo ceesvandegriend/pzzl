@@ -13,12 +13,6 @@
     state: present
     flatpakrepo_url: https://dl.flathub.org/repo/flathub.flatpakrepo
   
-# - name: Install flatpak vscode
-#   flatpak:
-#     name: com.visualstudio.code
-#     state: present
-#     remote: flathub
-  
 - name: Install flatpak bitwarden
   flatpak:
     name: com.bitwarden.desktop

@@ -3,22 +3,28 @@
   import_tasks: apt_package.yml
   when: ansible_distribution == "Debian"
   tags:
-  - never
   - desktop
 
 - import_tasks: ssh.yml
   tags:
-  - never
+  - desktop
+
+- import_tasks: git.yml
+  tags:
   - desktop
 
 - import_tasks: flatpak.yml
   tags:
-  - never
   - desktop
 
 - name: Visual Studio Code
   import_tasks: vscode.yml
   when: ansible_distribution == "Debian"
   tags:
-  - never
+  - desktop
+
+- name: Google Chrome
+  import_tasks: chrome.yml
+  when: ansible_distribution == "Debian"
+  tags:
   - desktop

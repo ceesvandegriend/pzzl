@@ -1,6 +1,4 @@
 ---
-- include_vars: secrets.yml
-
 - name: Common user {{ pzzl_user.login }}
   user:
     name: "{{ pzzl_user.login }}"
