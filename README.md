@@ -12,7 +12,7 @@ $ cd .../src/ansible
 ```
 
 ```shell
-$ ansible-playbook -K -t desktop setup.yml
+$ ansible-playbook -K desktop.yml
 BECOME password: ...
 
 PLAY [Playing with Ansible] ********************************************************************************************************
