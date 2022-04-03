@@ -1,6 +1,4 @@
-# pzzl / Puzzler
-
-Setup the localhost with Ansible.
+# pzzl / puzzler - setup my desktop with Ansible.
 
 Store ansible-vault password in `~/.pzzl-ansible-vault`.
 
